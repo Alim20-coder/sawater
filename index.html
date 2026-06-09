@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مؤسسة حسين راشد المحامض | الحلول المتكاملة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<style>
+  /* ===== THEME VARIABLES (CHIC LIGHT GRAY & WHITE) ===== */
+  :root {
+    --primary: #000000;       /* Pure Black */
+    --primary-light: #1f2937; /* Dark Gray - Headings */
+    --accent: #9ca3af;        /* Light Gray - Secondary */
+    --bg-body: #f3f4f6;       /* Very Light Gray - Page Background */
+    --bg-card: #ffffff;       /* Pure White - Card Background */
+    --bg-section: #f9fafb;    /* Off-White - Section Background */
+    --text-main: #111827;     /* Almost Black - Main Text */
+    --text-muted: #6b7280;    /* Muted Text */
+    --border: #e5e7eb;        /* Light Border */
+    --white: #ffffff;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --gradient: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    background: var(--bg-body);
+    color: var(--text-main);
+    overflow-x: hidden;
+    direction: rtl;
+    line-height: 1.7;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg-body); }
+  ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+  /* ===== LOADER ===== */
+  #loader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 25px;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; }
+  .loader-logo {
+    font-family: 'Cairo', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: -1px;
+    text-align: center;
+  }
+  .loader-bar {
+    width: 250px; height: 4px;
+    background: var(--bg-section);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .loader-bar-fill {
+    height: 100%;
+    background: var(--text-main);
+    border-radius: 4px;
+    animation: loadFill 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    width: 0%;
+  }
+  @keyframes loadFill { from { width: 0; } to { width: 100%; } }
+
+  /* ===== NAVBAR (White & Glassmorphism) ===== */
+  #navbar {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    padding: 15px 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.4s ease;
+    box-shadow: var(--shadow-sm);
+  }
+  #navbar.scrolled {
+    padding: 10px 0;
+    background: rgba(255,255,255,0.98);
+    box-shadow: var(--shadow-md);
+  }
+  .navbar-brand-custom {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .brand-icon {
+    width: 45px; height: 45px;
+    background: var(--primary); /* Black */
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; color: var(--white);
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .brand-text { display: flex; flex-direction: column; }
+  .brand-main {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-weight: 900;
+    color: var(--text-main); /* Black Text */
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .brand-sub {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .nav-link-custom {
+    color: var(--text-main) !important; /* Black Text */
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 8px 18px !important;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+  /* FIX: Hover Logic */
+  .nav-link-custom:hover, .nav-link-custom.active {
+    color: var(--white) !important; /* White Text */
+    background: var(--primary); /* Black Background */
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .navbar-toggler {
+    border: 2px solid var(--border) !important;
+    padding: 6px 10px !important;
+    border-radius: 8px;
+  }
+  .navbar-toggler-icon-custom {
+    width: 24px; height: 18px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .navbar-toggler-icon-custom span {
+    width: 100%; height: 2px;
+    background: var(--text-main); /* Black Lines */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  .phone-btn {
+    background: var(--primary); /* Black */
+    color: var(--white) !important; /* White Text */
+    font-weight: 800;
+    padding: 10px 24px !important;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+  }
+  .phone-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    background: #000;
+    color: var(--white) !important;
+  }
+
+  /* ===== HERO SECTION ===== */
+  #hero {
+    min-height: 100vh;
+    background: var(--bg-body);
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+    padding-top: 100px;
+  }
+  /* Abstract Shapes for Background */
+  .hero-shape {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px);
+    z-index: 1; opacity: 0.5;
+    animation: floatShape 10s infinite ease-in-out alternate;
+  }
+  .shape-1 { width: 400px; height: 400px; background: #e5e7eb; top: -100px; left: -100px; }
+  .shape-2 { width: 500px; height: 500px; background: #f3f4f6; bottom: -150px; right: -150px; animation-delay: 2s; }
+  
+  @keyframes floatShape {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(30px, 50px); }
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--text-main); /* Black Text */
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+    animation: fadeInDown 0.8s ease 0.3s both;
+  }
+  .hero-title {
+    font-family: 'Cairo', sans-serif;
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    font-weight: 900;
+    color: var(--text-main); /* Black Text */
+    line-height: 1.15;
+    margin-bottom: 20px;
+    animation: fadeInRight 0.8s ease 0.5s both;
+  }
+  .hero-title .highlight {
+    background: var(--text-main); /* Black BG */
+    color: var(--white); /* White Text */
+    padding: 0 10px;
+    border-radius: 8px;
+    position: relative;
+    display: inline-block;
+  }
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-muted); /* Dark Gray Text */
+    line-height: 1.9;
+    max-width: 600px;
+    margin-bottom: 40px;
+    font-weight: 500;
+    animation: fadeInRight 0.8s ease 0.7s both;
+  }
+  .hero-btns { animation: fadeInUp 0.8s ease 0.9s both; display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary-custom {
+    background: var(--text-main); /* Black */
+    color: var(--white); /* White Text */
+    padding: 15px 36px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-lg);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-primary-custom:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    background: #000;
+    color: var(--white);
+  }
+  .btn-outline-custom {
+    background: var(--white);
+    color: var(--text-main); /* Black Text */
+    padding: 14px 34px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    border: 2px solid var(--border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-outline-custom:hover {
+    background: var(--bg-body);
+    border-color: var(--text-main);
+    transform: translateY(-4px);
+    color: var(--text-main);
+  }
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 50px; flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease 1.1s both;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    color: var(--text-main); /* Black */
+    font-family: 'Cairo', sans-serif;
+    display: block;
+  }
+  .stat-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+  .hero-visual {
+    position: relative;
+    animation: fadeInLeft 1s ease 0.5s both;
+  }
+  .hero-img-wrap {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-hover);
+    border: 8px solid var(--white);
+  }
+  .hero-img-wrap img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .hero-img-wrap:hover img { transform: scale(1.03); }
+  .hero-float-card {
+    position: absolute;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 25px;
+    z-index: 3;
+    box-shadow: var(--shadow-lg);
+    animation: float 6s ease-in-out infinite;
+  }
+  .hero-float-card.card1 { bottom: 30px; right: -20px; }
+  .hero-float-card.card2 { top: 40px; left: -30px; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  .float-card-title { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; margin-bottom: 5px; }
+  .float-card-value { font-size: 1.2rem; font-weight: 900; color: var(--text-main); }
+  .float-card-sub { font-size: 0.7rem; color: var(--text-muted); }
+
+  /* ===== SECTION STYLES ===== */
+  .section-wrap { padding: 100px 0; position: relative; overflow: hidden; }
+  .section-bg-white { background: var(--bg-card); }
+  .section-bg-gray { background: var(--bg-body); }
+  
+  .section-header { text-align: center; margin-bottom: 70px; }
+  .section-tag {
+    display: inline-block;
+    background: var(--bg-body);
+    border: 1px solid var(--border);
+    color: var(--text-main); /* Black Text */
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: 'Cairo', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: var(--text-main); /* Black Text */
+  }
+  .section-desc {
+    font-size: 1.1rem;
+    color: var(--text-muted); /* Dark Gray Text */
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.9;
+    font-weight: 500;
+  }
+  .section-divider {
+    width: 60px; height: 4px;
+    background: var(--text-main); /* Black */
+    border-radius: 2px;
+    margin: 20px auto 0;
+  }
+
+  /* ===== SERVICES ===== */
+  /* FIX: HOVER LOGIC */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+  .service-card {
+    background: var(--bg-card); /* White BG */
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    color: var(--text-main); /* Default Black Text */
+  }
+  .service-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; width: 100%; height: 5px;
+    background: var(--text-main);
+    transform: scaleX(0); transform-origin: right;
+    transition: transform 0.4s ease;
+  }
+  /* FIX: HOVER STATE */
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+    background: var(--primary); /* Black BG on Hover */
+    color: var(--white); /* White Text on Hover */
+    border-color: transparent;
+  }
+  .service-card:hover::before { transform: scaleX(1); transform-origin: left; }
+  .service-card:hover .service-title { color: var(--white); } /* Ensure Title is White */
+  .service-card:hover .service-desc { color: #d1d5db; } /* Ensure Desc is Light Gray */
+  
+  .service-icon {
+    width: 70px; height: 70px;
+    background: var(--bg-body); /* Light Gray Icon BG */
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: var(--text-main); /* Black Icon */
+    transition: all 0.4s ease;
+    position: relative; z-index: 1;
+  }
+  .service-card:hover .service-icon {
+    background: var(--white); /* White Icon BG on Black Card */
+    color: var(--text-main); /* Black Icon */
+    transform: rotateY(180deg);
+  }
+  .service-title { font-size: 1.25rem; font-weight: 900; color: var(--text-main); margin-bottom: 12px; position: relative; z-index: 1; transition: color 0.3s; }
+  .service-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; position: relative; z-index: 1; transition: color 0.3s; }
+
+  /* ===== GALLERY ===== */
+  .gallery-tabs {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+  .gallery-tab {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-muted); /* Dark Gray Text */
+    padding: 10px 28px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  /* FIX: TAB HOVER */
+  .gallery-tab.active, .gallery-tab:hover {
+    background: var(--text-main); /* Black BG */
+    color: var(--white); /* White Text */
+    border-color: var(--text-main);
+    transform: scale(1.05);
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .gallery-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    box-shadow: var(--shadow-md);
+  }
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+  .gallery-item:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: var(--shadow-hover);
+  }
+  .gallery-item:hover img { transform: scale(1.1); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.8) 100%); /* Dark Gradient Overlay */
+    display: flex; align-items: flex-end;
+    padding: 24px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay-text {
+    color: var(--white); /* White Text on Dark Overlay */
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex; align-items: center; gap: 8px;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+  }
+  .gallery-item:hover .gallery-overlay-text { transform: translateY(0); }
+
+  /* ===== LIGHTBOX ===== */
+  #lightbox {
+    position: fixed; inset: 0; z-index: 9000;
+    background: rgba(255,255,255,0.95); /* White Background */
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  #lightbox.active { opacity: 1; visibility: visible; }
+  #lightbox img {
+    max-width: 90vw; max-height: 85vh;
+    border-radius: 8px;
+    object-fit: contain;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+  .lightbox-close {
+    position: absolute; top: 20px; left: 20px;
+    width: 50px; height: 50px;
+    background: var(--bg-card); /* White */
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-main); /* Black Icon */
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+  }
+  .lightbox-close:hover { transform: rotate(90deg); background: var(--text-main); color: var(--white); }
+  .lightbox-nav {
+    position: absolute; top: 50%;
+    transform: translateY(-50%);
+    width: 50px; height: 50px;
+    background: var(--bg-card);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-main); /* Black Icon */
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+  }
+  .lightbox-nav:hover { background: var(--text-main); color: var(--white); }
+
+  /* ===== WHY US ===== */
+  .why-card {
+    display: flex; gap: 20px; align-items: flex-start;
+    background: var(--bg-card); /* White */
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    height: 100%;
+    color: var(--text-main); /* Default Black */
+  }
+  /* FIX: WHY US HOVER */
+  .why-card:hover {
+    border-color: var(--text-main);
+    transform: translateY(-5px);
+    background: var(--text-main); /* Black BG on Hover */
+    color: var(--white); /* White Text on Hover */
+  }
+  .why-card:hover h4, .why-card:hover p { color: var(--white); } /* Force children white */
+
+  .why-icon {
+    width: 60px; height: 60px; flex-shrink: 0;
+    background: var(--bg-body);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+  }
+  .why-card:hover .why-icon { background: var(--white); color: var(--text-main); }
+  .why-text h4 { color: var(--text-main); font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; transition: color 0.3s; }
+  .why-text p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; transition: color 0.3s; }
+
+  /* ===== PROCESS ===== */
+  .process-steps { position: relative; }
+  .process-line {
+    position: absolute;
+    top: 45px;
+    right: 10%;
+    left: 10%;
+    height: 2px;
+    background: #e5e7eb;
+    z-index: 0;
+  }
+  .process-step { text-align: center; position: relative; z-index: 1; }
+  .step-num {
+    width: 90px; height: 90px;
+    background: var(--bg-card); /* White */
+    border: 4px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text-main);
+    margin: 0 auto 24px;
+    position: relative;
+    transition: all 0.4s ease;
+    font-family: 'Cairo', sans-serif;
+  }
+  .process-step:hover .step-num {
+    background: var(--text-main); /* Black BG */
+    color: var(--white); /* White Text */
+    border-color: var(--text-main);
+    transform: scale(1.1);
+  }
+  .step-title { color: var(--text-main); font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; }
+  .step-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonial-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+    height: 100%;
+    position: relative;
+    transition: all 0.3s ease;
+    color: var(--text-main);
+  }
+  .testimonial-card:hover {
+    border-color: var(--text-main);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+  }
+  .quote-icon {
+    font-size: 4rem;
+    color: #f3f4f6;
+    line-height: 1;
+    margin-bottom: 20px;
+    font-family: serif;
+  }
+  .testimonial-text { color: var(--text-main); font-size: 1rem; line-height: 1.9; margin-bottom: 30px; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; gap: 16px; }
+  .author-avatar {
+    width: 50px; height: 50px;
+    background: var(--text-main);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .author-name { color: var(--text-main); font-size: 1rem; font-weight: 800; }
+  .author-role { color: var(--text-muted); font-size: 0.85rem; }
+  .stars { color: #fbbf24; font-size: 0.9rem; margin-bottom: 10px; }
+
+  /* ===== CONTACT ===== */
+  .contact-info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-item:hover { padding-right: 10px; }
+  .contact-icon {
+    width: 50px; height: 50px;
+    background: var(--bg-body);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-main); font-size: 1.1rem;
+    transition: all 0.3s ease;
+  }
+  .contact-item:hover .contact-icon { background: var(--text-main); color: var(--white); }
+  .contact-label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; }
+  .contact-value { color: var(--text-main); font-size: 1rem; font-weight: 700; text-decoration: none; transition: color 0.3s ease; }
+  .contact-value:hover { color: var(--primary); }
+  .contact-form-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+  }
+  .form-group { margin-bottom: 24px; }
+  .form-label-custom { display: block; color: var(--text-main); font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; }
+  .form-control-custom {
+    width: 100%;
+    background: var(--bg-body);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 15px 20px;
+    color: var(--text-main);
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+  .form-control-custom:focus {
+    border-color: var(--text-main);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
+  }
+  textarea.form-control-custom { resize: vertical; min-height: 130px; }
+
+  /* ===== MAP ===== */
+  .map-container {
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+  }
+  .map-container iframe { display: block; width: 100%; height: 450px; filter: grayscale(0%); }
+
+  /* ===== CERTIFICATES ===== */
+  .cert-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 35px;
+    text-align: center;
+    transition: all 0.4s ease;
+    height: 100%;
+  }
+  .cert-card:hover {
+    border-color: var(--text-main);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+  }
+  .cert-icon { font-size: 3rem; margin-bottom: 20px; display: block; color: var(--text-main); }
+  .cert-title { color: var(--text-main); font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; }
+  .cert-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.8; }
+  .cert-num {
+    display: inline-block;
+    background: var(--bg-body);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: 16px;
+    font-family: 'Cairo', sans-serif;
+  }
+
+  /* ===== COUNTER ===== */
+  .counter-wrap { text-align: center; padding: 30px; background: var(--bg-card); border-radius: 20px; border: 1px solid var(--border); }
+  .counter-num {
+    font-family: 'Cairo', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    color: var(--text-main);
+    display: block;
+  }
+  .counter-label { color: var(--text-muted); font-size: 1rem; margin-top: 8px; font-weight: 600; }
+  .counter-icon { font-size: 2.5rem; color: #e5e7eb; margin-bottom: 15px; }
+
+  /* ===== PROMO BANNER ===== */
+  #promo { background: var(--text-main); color: var(--white); } /* Black BG */
+  .promo-content { text-align: center; padding: 80px 20px; }
+  .promo-title { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 900; margin-bottom: 16px; } /* White Text */
+  .promo-desc { font-size: 1.1rem; color: #d1d5db; margin-bottom: 35px; font-weight: 500; } /* Light Gray Text */
+  .btn-light {
+    background: var(--white); color: var(--text-main);
+    padding: 15px 40px; border-radius: 50px;
+    font-weight: 800; font-size: 1rem;
+    border: none; cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-light:hover { transform: translateY(-3px); background: #f3f4f6; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--text-main); /* Black BG */
+    color: #d1d5db; /* White Text (Muted) */
+    padding: 80px 0 30px;
+  }
+  .footer-brand .brand-main { color: var(--white); font-size: 1.2rem; } /* White Text */
+  .footer-desc { color: #9ca3af; font-size: 0.95rem; line-height: 1.9; margin-bottom: 30px; }
+  .social-btn {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-size: 1rem;
+    transition: all 0.3s ease; text-decoration: none;
+  }
+  .social-btn:hover { background: var(--white); color: var(--text-main); transform: translateY(-3px); }
+  .footer-heading { color: var(--white); font-size: 1rem; font-weight: 800; margin-bottom: 25px; position: relative; padding-bottom: 12px; }
+  .footer-heading::after { content: ''; position: absolute; bottom: 0; right: 0; width: 40px; height: 3px; background: var(--white); border-radius: 2px; }
+  .footer-link { display: flex; align-items: center; gap: 10px; color: #9ca3af; font-size: 0.95rem; text-decoration: none; padding: 8px 0; transition: all 0.3s ease; }
+  .footer-link i { color: rgba(255,255,255,0.2); font-size: 0.8rem; }
+  .footer-link:hover { color: var(--white); padding-right: 10px; }
+  .footer-link:hover i { color: var(--white); }
+  .footer-bottom { padding: 30px 0; margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .footer-copy { color: #6b7280; font-size: 0.9rem; }
+  .footer-copy span { color: var(--white); }
+  .footer-gmtweb { color: #6b7280; font-size: 0.9rem; text-decoration: none; transition: color 0.3s ease; }
+  .footer-gmtweb:hover { color: var(--white); }
+  .footer-gmtweb strong { color: var(--white); }
+
+  /* ===== FLOATS ===== */
+  .whatsapp-float {
+    position: fixed; bottom: 30px; left: 30px; z-index: 800;
+    width: 60px; height: 60px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; color: #fff; text-decoration: none;
+    box-shadow: 0 10px 30px rgba(37,211,102,0.4);
+    transition: transform 0.3s ease;
+    animation: pulseWA 2.5s infinite;
+  }
+    .phone-float {
+    position: fixed; bottom: 115px; left: 30px; z-index: 800;
+    width: 60px; height: 60px;
+    background: #1f2937;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; color: #fff; text-decoration: none;
+    box-shadow: 0 10px 30px#151627d0;
+    transition: transform 0.3s ease;
+    animation: pulseWA 2.5s infinite;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); }
+  @keyframes pulseWA { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+
+  .back-to-top {
+    position: fixed; bottom: 30px; right: 30px; z-index: 800;
+    width: 50px; height: 50px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--text-main); text-decoration: none;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+  }
+  .back-to-top.visible { opacity: 1; visibility: visible; }
+  .back-to-top:hover { background: var(--text-main); color: var(--white); transform: translateY(-3px); }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in-up { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-in-right { opacity: 0; transform: translateX(50px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-in-right.visible { opacity: 1; transform: translateX(0); }
+  .fade-in-left { opacity: 0; transform: translateX(-50px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-in-left.visible { opacity: 1; transform: translateX(0); }
+  
+  .delay-1 { transition-delay: 0.1s !important; }
+  .delay-2 { transition-delay: 0.2s !important; }
+  .delay-3 { transition-delay: 0.3s !important; }
+  .delay-4 { transition-delay: 0.4s !important; }
+  .delay-5 { transition-delay: 0.5s !important; }
+  .delay-6 { transition-delay: 0.6s !important; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 991.98px) {
+    .process-line { display: none; }
+    .hero-visual { margin-top: 50px; }
+    .hero-float-card.card2 { left: 10px; }
+  }
+  @media (max-width: 767.98px) {
+    .section-wrap { padding: 70px 0; }
+    .hero-stats { gap: 25px; justify-content: center; }
+    .hero-btns { justify-content: center; }
+    .hero-title { text-align: center; }
+    .hero-subtitle { text-align: center; margin: 0 auto 40px; }
+    .hero-badge { display: flex; justify-content: center; }
+    .services-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    #navbar { background: #fff; } /* Ensure solid background on mobile */
+  }
+  @media (max-width: 575.98px) {
+    .services-grid { grid-template-columns: 1fr; gap: 20px; }
+    .gallery-grid { grid-template-columns: 1fr; gap: 15px; }
+    .hero-img-wrap img { height: 350px; }
+    .hero-float-card.card2 { display: none; }
+    .container, .container-fluid { padding-left: 20px; padding-right: 20px; } /* Fix padding */
+  }
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">مؤسسة حسين راشد المحامض<br><small style="font-size:0.5em;font-weight:700;color:var(--text-muted)">    - نجران</small></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></div>
+  <button class="lightbox-nav lightbox-prev" onclick="lightboxPrev()"><i class="fas fa-chevron-right"></i></button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav lightbox-next" onclick="lightboxNext()"><i class="fas fa-chevron-left"></i></button>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/966550888608" target="_blank" class="whatsapp-float" title="تواصل عبر واتساب">
+  <i class="fab fa-whatsapp"></i>
+</a>
+<!-- Phone FLOAT -->
+<a href="tel:+966550888608" target="_blank" class="phone-float" title="تواصل عبر الهاتف">
+  <i class="fas fa-phone"></i>
+</a>
+
+<!-- BACK TO TOP -->
+<a href="#hero" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between w-100">
+      <a href="#hero" class="navbar-brand-custom">
+        <div class="brand-icon"><i class="fas fa-campground"></i></div>
+        <div class="brand-text">
+          <span class="brand-main">حسين راشد المحامض</span>
+          <span class="brand-sub">    • نجران</span>
+        </div>
+      </a>
+      <div class="d-none d-xl-flex align-items-center gap-2">
+        <a href="#services" class="nav-link-custom">خدماتنا</a>
+        <a href="#gallery" class="nav-link-custom">أعمالنا</a>
+        <a href="#why-us" class="nav-link-custom">لماذا نحن</a>
+        <a href="#process" class="nav-link-custom">كيف نعمل</a>
+        <a href="#certificates" class="nav-link-custom">الوثائق</a>
+        <a href="#contact" class="nav-link-custom">تواصل</a>
+        <a href="tel:+966550888608" class="phone-btn nav-link-custom me-2"><i class="fas fa-phone-alt me-1"></i>اتصل بنا</a>
+      </div>
+      <button class="navbar-toggler border-0 bg-transparent d-xl-none" id="navToggle" onclick="toggleNav()">
+        <div class="navbar-toggler-icon-custom"><span></span><span></span><span></span></div>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease;">
+      <div class="py-3 d-flex flex-column gap-2">
+        <a href="#services" class="nav-link-custom" onclick="closeNav()">خدماتنا</a>
+        <a href="#gallery" class="nav-link-custom" onclick="closeNav()">أعمالنا</a>
+        <a href="#why-us" class="nav-link-custom" onclick="closeNav()">لماذا نحن</a>
+        <a href="#process" class="nav-link-custom" onclick="closeNav()">كيف نعمل</a>
+        <a href="#certificates" class="nav-link-custom" onclick="closeNav()">الوثائق</a>
+        <a href="#contact" class="nav-link-custom" onclick="closeNav()">تواصل</a>
+        <a href="tel:+966550888608" class="phone-btn nav-link-custom mt-2 d-inline-block text-center"><i class="fas fa-phone-alt me-1"></i>اتصل بنا</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-shape shape-1"></div>
+  <div class="hero-shape shape-2"></div>
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="hero-content">
+          <div class="hero-badge"><i class="fas fa-star" style="font-size:0.8rem"></i> الأول في نجران منذ 2021</div>
+          <h1 class="hero-title">
+            مؤسسة <span class="highlight">حسين راشد</span><br>
+            المحامض    
+          </h1>
+          <p class="hero-subtitle">
+            نحن في "المحامض    " لا نقوم فقط ببيع خيام أو مظلات، بل نصنع الفضاءات. نقدم أرقى حلول الخيام، بيوت الشعر، المظلات، والمضلات التي تجمع بين الأصالة السعودية العريقة والتصاميم العصرية المبتكرة. سواء كنت تبحث عن استراحة هادئة في الصحراء أو مظلة أنيقة لموقف سياراتك، فريقنا المهني في نجران جاهز لتحويل رؤيتك إلى واقع ملموس بأعلى معايير الجودة.
+          </p>
+          <div class="hero-btns">
+            <a href="#gallery" class="btn-primary-custom"><i class="fas fa-images"></i> تصفح أعمالنا</a>
+            <a href="#contact" class="btn-outline-custom"><i class="fas fa-phone-alt"></i> اطلب عرض سعر</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-num counter-anim" data-target="500">0</span>
+              <span class="stat-label">مشروع منجز</span>
+            </div>
+            <div class="stat-item" style="border-right:1px solid var(--border);border-left:1px solid var(--border);padding:0 28px">
+              <span class="stat-num counter-anim" data-target="5">0</span>
+              <span class="stat-label">سنوات خبرة</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num counter-anim" data-target="100">0</span>
+              <span class="stat-label">% رضا العملاء</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-visual">
+          <div class="hero-img-wrap">
+            <img src="css/34.jpeg" alt="بيوت شعر" onerror="this.src='https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&q=80'">
+          </div>
+          <div class="hero-float-card card1">
+            <div class="float-card-title"><i class="fas fa-check-circle me-1"></i> مرخّص رسمياً</div>
+            <div class="float-card-value">هيئة الزكاة</div>
+            <div class="float-card-sub">VAT Registered 2022</div>
+          </div>
+          <div class="hero-float-card card2">
+            <div class="float-card-title"><i class="fas fa-store me-1"></i> السجل التجاري</div>
+            <div class="float-card-value">7026831599</div>
+            <div class="float-card-sub">Ministry of Commerce</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services" class="section-wrap section-bg-gray">
+  <div class="container">
+    <div class="section-header fade-in-up">
+      <div class="section-tag">خدماتنا المتميزة</div>
+      <h2 class="section-title">ماذا <span>نقدم</span> لك؟</h2>
+      <p class="section-desc">نوفر طيفاً واسعاً من الحلول الهندسية والخياطية المتكاملة. نحن لا نكتفي بالتنفيذ، بل نقدم استشارات تصميمية لضمان حصولك على أفضل استخدام للمساحة بأعلى جودة.</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in-up delay-1">
+        <div class="service-icon"><i class="fas fa-campground"></i></div>
+        <h3 class="service-title">خيام متعددة الاستخدامات</h3>
+        <p class="service-desc">نصمم وننفذ الخيام بجميع المقاسات، من الخيام الاستقبالية الفاخرة للمؤتمرات والمناسبات الكبرى، إلى خيام المخيمات الصحراوية المتينة التي تتحمل ظروف الطقس القاسية.</p>
+      </div>
+      <div class="service-card fade-in-up delay-2">
+        <div class="service-icon"><i class="fas fa-home"></i></div>
+        <h3 class="service-title">بيوت الشعر الأصيلة</h3>
+        <p class="service-desc">نحتفل بالتراث من خلال بيوت الشعر التي نصنعها يدوًا بدقة متناهية. نجمع بين الخامات الأصلية العالية الجودة والتصاميم العصرية التي تضيف لمسة من الفخامة لأي مكان.</p>
+      </div>
+      <div class="service-card fade-in-up delay-3">
+        <div class="service-icon"><i class="fas fa-umbrella"></i></div>
+        <h3 class="service-title">مظلات سيارات وحدائق</h3>
+        <p class="service-desc">حماية ممتازة لأصولك مع مظلاتنا المصممة خصيصًا. نستخدم أفضل أنواع الأقمشة المقاومة للشمس والأمطار وهياكل معدنية متينة تضمن العمر الطويل.</p>
+      </div>
+      <div class="service-card fade-in-up delay-4">
+        <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+        <h3 class="service-title">سواتر وخصوصية</h3>
+        <p class="service-desc">نوفر لك الخصوصية التامة مع سواتر متنوعة (خشبية، حديدية، شبكية). تصاميمنا تضفي جمالاً على المكان وتحميك من العيون والرياح.</p>
+      </div>
+      <div class="service-card fade-in-up delay-1">
+        <div class="service-icon"><i class="fas fa-couch"></i></div>
+        <h3 class="service-title">جلسات خارجية فاخرة</h3>
+        <p class="service-desc">حول حديقتك أو سطح منزلك إلى واحة من الراحة. نقوم بتصميم وتنفيذ جلسات خارجية مريحة بأحدث الديكورات والأقمشة المقاومة للعوامل الجوية.</p>
+      </div>
+      <div class="service-card fade-in-up delay-2">
+        <div class="service-icon"><i class="fas fa-archway"></i></div>
+        <h3 class="service-title">برجولات معمارية</h3>
+        <p class="service-desc">برجولات خشبية وحديدية بتصاميم كلاسيكية وحديثة. نضمن لك هيكلًا قويًا ويتناغم مع الهندسة المعمارية لمنزلك أو مؤسستك.</p>
+      </div>
+      <div class="service-card fade-in-up delay-3">
+        <div class="service-icon"><i class="fas fa-layer-group"></i></div>
+        <h3 class="service-title">عوازل ساندوتش بانل</h3>
+        <p class="service-desc">حلول عزل حراري وصوتي مثالية للعشش والمستودعات والمباني السريعة. نستخدم ألواح ساندوتش بانل بكثافات ومعايير عالمية لضمان الراحة.</p>
+      </div>
+      <div class="service-card fade-in-up delay-4">
+        <div class="service-icon"><i class="fas fa-building"></i></div>
+        <h3 class="service-title">الملاحق والتوسعات</h3>
+        <p class="service-desc">هل تحتاج لمساحة إضافية؟ نقوم بتنفيذ ملاحق سكنية وتجارية بمواصفات هندسية دقيقة وإنهاءات داخلية وخارجية راقية.</p>
+      </div>
+      <div class="service-card fade-in-up delay-1">
+        <div class="service-icon"><i class="fas fa-fire"></i></div>
+        <h3 class="service-title">مشبات تراثية</h3>
+        <p class="service-desc">نصمم مشبات بأحجار طبيعية وطينيات تنبض بالدفء والأصالة. تشكيلاتنا الفنية تجعل من المشبة قطعة فنية مركزية في صالتك.</p>
+      </div>
+      <div class="service-card fade-in-up delay-2">
+        <div class="service-icon"><i class="fas fa-tools"></i></div>
+        <h3 class="service-title">الترميم والصيانة</h3>
+        <p class="service-desc">خدمة شاملة لترميم الخيام القديمة وتجديد الأقمشة وتشطيب المباني. نعيد الحياة لمنشآتك بأقل تكلفة وأعلى جودة.</p>
+      </div>
+      <div class="service-card fade-in-up delay-3">
+        <div class="service-icon"><i class="fas fa-tent-arrow-down-to-line"></i></div>
+        <h3 class="service-title">تجهيز المخيمات</h3>
+        <p class="service-desc">حلول متكاملة للمخيمات السياحية أو الخاصة. نوفر كل شيء من الخيام الرئيسية إلى دورات المياه والخدمات.</p>
+      </div>
+      <div class="service-card fade-in-up delay-4">
+        <div class="service-icon"><i class="fas fa-hard-hat"></i></div>
+        <h3 class="service-title">المقاولات العامة</h3>
+        <p class="service-desc">فريقنا المؤهل ينفذ كافة أعمال المقاولات من حفر وتأسيس وباء وتشطيب، بمتابعة هندسية دقيقة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery" class="section-wrap section-bg-white">
+  <div class="container">
+    <div class="section-header fade-in-up">
+      <div class="section-tag">معرض الأعمال</div>
+      <h2 class="section-title">أحدث <span>مشاريعنا</span></h2>
+      <p class="section-desc">نفتخر بتقديم أعمال تتحدث عن نفسها. تصفح معرضنا لترى مستوى التفصيل والدقة التي نلتزم بها في كل مشروع.</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="gallery-tabs">
+      <button class="gallery-tab active" onclick="filterGallery('all', this)">الكل</button>
+      <button class="gallery-tab" onclick="filterGallery('panel', this)">ساندوتش بانل</button>
+      <button class="gallery-tab" onclick="filterGallery('tent', this)">خيم</button>
+      <button class="gallery-tab" onclick="filterGallery('shade', this)">مظلات</button>
+      <button class="gallery-tab" onclick="filterGallery('house', this)">بيوت شعر</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Panel: 1-6 -->
+      <div class="gallery-item fade-in-up delay-1" data-cat="panel" onclick="openLightbox('css/1.jpeg', 0)">
+        <img src="css/1.jpeg" alt="ساندوتش بانل 1" onerror="this.src='https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> ساندوتش بانل</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-2" data-cat="panel" onclick="openLightbox('css/2.jpeg', 1)">
+        <img src="css/2.jpeg" alt="ساندوتش بانل 2" onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> ساندوتش بانل</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-3" data-cat="panel" onclick="openLightbox('css/3.jpeg', 2)">
+        <img src="css/3.jpeg" alt="ساندوتش بانل 3" onerror="this.src='https://images.unsplash.com/photo-1478827387698-1527781a4887?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> ساندوتش بانل</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-4" data-cat="panel" onclick="openLightbox('css/4.jpeg', 3)">
+        <img src="css/4.jpeg" alt="ساندوتش بانل 4" onerror="this.src='https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> ساندوتش بانل</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-1" data-cat="panel" onclick="openLightbox('css/5.jpeg', 4)">
+        <img src="css/5.jpeg" alt="ساندوتش بانل 5" onerror="this.src='https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> ساندوتش بانل</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-2" data-cat="panel" onclick="openLightbox('css/6.jpeg', 5)">
+        <img src="css/6.jpeg" alt="ساندوتش بانل 6" onerror="this.src='https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> ساندوتش بانل</div></div>
+      </div>
+      <!-- Tents: 7-12 -->
+      <div class="gallery-item fade-in-up delay-3" data-cat="tent" onclick="openLightbox('css/7.jpeg', 6)">
+        <img src="css/7.jpeg" alt="خيمة 1" onerror="this.src='https://images.unsplash.com/photo-1525811902-f2342640856e?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> خيمة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-4" data-cat="tent" onclick="openLightbox('css/8.jpeg', 7)">
+        <img src="css/8.jpeg" alt="خيمة 2" onerror="this.src='https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> خيمة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-1" data-cat="tent" onclick="openLightbox('css/9.jpeg', 8)">
+        <img src="css/9.jpeg" alt="خيمة 3" onerror="this.src='https://images.unsplash.com/photo-1478827387698-1527781a4887?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> خيمة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-2" data-cat="tent" onclick="openLightbox('css/10.jpeg', 9)">
+        <img src="css/10.jpeg" alt="خيمة 4" onerror="this.src='https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> خيمة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-3" data-cat="tent" onclick="openLightbox('css/11.jpeg', 10)">
+        <img src="css/11.jpeg" alt="خيمة 5" onerror="this.src='https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> خيمة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-4" data-cat="tent" onclick="openLightbox('css/12.jpeg', 11)">
+        <img src="css/12.jpeg" alt="خيمة 6" onerror="this.src='https://images.unsplash.com/photo-1537225228614-56cc3556d7ed?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> خيمة</div></div>
+      </div>
+      <!-- Shade: 13-33 -->
+      <div class="gallery-item fade-in-up delay-1" data-cat="shade" onclick="openLightbox('css/13.jpeg', 12)">
+        <img src="css/13.jpeg" alt="مظلة 1" onerror="this.src='https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-2" data-cat="shade" onclick="openLightbox('css/14.jpeg', 13)">
+        <img src="css/14.jpeg" alt="مظلة 2" onerror="this.src='https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-3" data-cat="shade" onclick="openLightbox('css/15.jpeg', 14)">
+        <img src="css/15.jpeg" alt="مظلة 3" onerror="this.src='https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-4" data-cat="shade" onclick="openLightbox('css/16.jpeg', 15)">
+        <img src="css/16.jpeg" alt="مظلة 4" onerror="this.src='https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-1" data-cat="shade" onclick="openLightbox('css/17.jpeg', 16)">
+        <img src="css/17.jpeg" alt="مظلة 5" onerror="this.src='https://images.unsplash.com/photo-1478827387698-1527781a4887?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-2" data-cat="shade" onclick="openLightbox('css/18.jpeg', 17)">
+        <img src="css/18.jpeg" alt="مظلة 6" onerror="this.src='https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-3" data-cat="shade" onclick="openLightbox('css/19.jpeg', 18)">
+        <img src="css/19.jpeg" alt="مظلة 7" onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-4" data-cat="shade" onclick="openLightbox('css/20.jpeg', 19)">
+        <img src="css/20.jpeg" alt="مظلة 8" onerror="this.src='https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-1" data-cat="shade" onclick="openLightbox('css/21.jpeg', 20)">
+        <img src="css/21.jpeg" alt="مظلة 9" onerror="this.src='https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-2" data-cat="shade" onclick="openLightbox('css/22.jpeg', 21)">
+        <img src="css/22.jpeg" alt="مظلة 10" onerror="this.src='https://images.unsplash.com/photo-1525811902-f2342640856e?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-3" data-cat="shade" onclick="openLightbox('css/23.jpeg', 22)">
+        <img src="css/23.jpeg" alt="مظلة 11" onerror="this.src='https://images.unsplash.com/photo-1537225228614-56cc3556d7ed?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-4" data-cat="shade" onclick="openLightbox('css/24.jpeg', 23)">
+        <img src="css/24.jpeg" alt="مظلة 12" onerror="this.src='https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-1" data-cat="shade" onclick="openLightbox('css/25.jpeg', 24)">
+        <img src="css/25.jpeg" alt="مظلة 13" onerror="this.src='https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-2" data-cat="shade" onclick="openLightbox('css/26.jpeg', 25)">
+        <img src="css/26.jpeg" alt="مظلة 14" onerror="this.src='https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-3" data-cat="shade" onclick="openLightbox('css/27.jpeg', 26)">
+        <img src="css/27.jpeg" alt="مظلة 15" onerror="this.src='https://images.unsplash.com/photo-1478827387698-1527781a4887?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-4" data-cat="shade" onclick="openLightbox('css/28.jpeg', 27)">
+        <img src="css/28.jpeg" alt="مظلة 16" onerror="this.src='https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-1" data-cat="shade" onclick="openLightbox('css/29.jpeg', 28)">
+        <img src="css/29.jpeg" alt="مظلة 17" onerror="this.src='https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-2" data-cat="shade" onclick="openLightbox('css/30.jpeg', 29)">
+        <img src="css/30.jpeg" alt="مظلة 18" onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-3" data-cat="shade" onclick="openLightbox('css/31.jpeg', 30)">
+        <img src="css/31.jpeg" alt="مظلة 19" onerror="this.src='https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-4" data-cat="shade" onclick="openLightbox('css/32.jpeg', 31)">
+        <img src="css/32.jpeg" alt="مظلة 20" onerror="this.src='https://images.unsplash.com/photo-1525811902-f2342640856e?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-1" data-cat="shade" onclick="openLightbox('css/33.jpeg', 32)">
+        <img src="css/33.jpeg" alt="مظلة 21" onerror="this.src='https://images.unsplash.com/photo-1537225228614-56cc3556d7ed?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> مظلة</div></div>
+      </div>
+      <!-- House: 34-42 -->
+      <div class="gallery-item fade-in-up delay-2" data-cat="house" onclick="openLightbox('css/34.jpeg', 33)">
+        <img src="css/34.jpeg" alt="بيت شعر 1" onerror="this.src='https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> بيت شعر</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-3" data-cat="house" onclick="openLightbox('css/35.jpeg', 34)">
+        <img src="css/35.jpeg" alt="بيت شعر 2" onerror="this.src='https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> بيت شعر</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-4" data-cat="house" onclick="openLightbox('css/36.jpeg', 35)">
+        <img src="css/36.jpeg" alt="بيت شعر 3" onerror="this.src='https://images.unsplash.com/photo-1478827387698-1527781a4887?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> بيت شعر</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-1" data-cat="house" onclick="openLightbox('css/37.jpeg', 36)">
+        <img src="css/37.jpeg" alt="بيت شعر 4" onerror="this.src='https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> بيت شعر</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-2" data-cat="house" onclick="openLightbox('css/38.jpeg', 37)">
+        <img src="css/38.jpeg" alt="بيت شعر 5" onerror="this.src='https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> بيت شعر</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-3" data-cat="house" onclick="openLightbox('css/39.jpeg', 38)">
+        <img src="css/39.jpeg" alt="بيت شعر 6" onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> بيت شعر</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-4" data-cat="house" onclick="openLightbox('css/40.jpeg', 39)">
+        <img src="css/40.jpeg" alt="بيت شعر 7" onerror="this.src='https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> بيت شعر</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-1" data-cat="house" onclick="openLightbox('css/41.jpeg', 40)">
+        <img src="css/41.jpeg" alt="بيت شعر 8" onerror="this.src='https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> بيت شعر</div></div>
+      </div>
+      <div class="gallery-item fade-in-up delay-2" data-cat="house" onclick="openLightbox('css/42.jpeg', 41)">
+        <img src="css/42.jpeg" alt="بيت شعر 9" onerror="this.src='https://images.unsplash.com/photo-1525811902-f2342640856e?w=600&q=80'">
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><i class="fas fa-expand"></i> بيت شعر</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COUNTER ===== -->
+<section id="counter-section" class="section-wrap section-bg-white">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-6 col-md-3 fade-in-up delay-1">
+        <div class="counter-wrap">
+          <i class="fas fa-project-diagram counter-icon"></i>
+          <span class="counter-num" data-target="500">0</span>
+          <div class="counter-label">مشروع منجز</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 fade-in-up delay-2">
+        <div class="counter-wrap">
+          <i class="fas fa-users counter-icon"></i>
+          <span class="counter-num" data-target="350">0</span>
+          <div class="counter-label">عميل سعيد</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 fade-in-up delay-3">
+        <div class="counter-wrap">
+          <i class="fas fa-calendar-check counter-icon"></i>
+          <span class="counter-num" data-target="5">0</span>
+          <div class="counter-label">سنوات خبرة</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 fade-in-up delay-4">
+        <div class="counter-wrap">
+          <i class="fas fa-star counter-icon"></i>
+          <span class="counter-num" data-target="100">0</span>
+          <div class="counter-label">% رضا تام</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY US ===== -->
+<section id="why-us" class="section-wrap section-bg-gray">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5">
+        <div class="section-header text-start fade-in-right" style="text-align:right !important">
+          <div class="section-tag">لماذا نحن؟</div>
+          <h2 class="section-title">ما يميّزنا <span>عن الجميع</span></h2>
+          <p class="section-desc" style="margin:0">نحن لا نكتفي بتنفيذ الطلبات، نسعى لأن نكون شركاء نجاحك. في مؤسسة حسين راشد المحامض، نجمع بين الخبرة العريقة التي اكتسبناها في نجران والمنطقة الجنوبية، وبين الابتكار المستمر في التصميم والتنفيذ.</p>
+          <div class="section-divider" style="margin:16px 0 0"></div>
+        </div>
+        <div class="mt-4 fade-in-right delay-2">
+          <div style="display:flex;gap:16px;align-items:center;margin-bottom:16px;padding:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px">
+            <div style="font-size:2.5rem">📞</div>
+            <div>
+              <div style="color:var(--text-muted);font-size:0.8rem;font-weight:700;margin-bottom:5px">خط الدعم المباشر</div>
+              <a href="tel:+966550888608" style="color:var(--text-main);font-size:1.3rem;font-weight:900;text-decoration:none;font-family:'Cairo',sans-serif">0550888608</a>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center;padding:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px">
+            <div style="font-size:2.5rem">📍</div>
+            <div>
+              <div style="color:var(--text-muted);font-size:0.8rem;font-weight:700;margin-bottom:5px">المقر الرئيسي</div>
+              <div style="color:var(--text-main);font-size:1.1rem;font-weight:600">نجران - حي الروضة</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="row g-4">
+          <div class="col-md-6 fade-in-up delay-1">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-award"></i></div>
+              <div class="why-text"><h4>خبرة وجودة عالية</h4><p>نمتلك فريقاً من أمهر الخياطين والمهندسين، ونستخدم خامات مختارة بعناية فائقة لضمان استدامة المنتج وجماليته.</p></div>
+            </div>
+          </div>
+          <div class="col-md-6 fade-in-up delay-2">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-clock"></i></div>
+              <div class="why-text"><h4>التسليم في الوقت</h4><p>نحن نقدر قيمة وقتك. لذا نلتزم بجداول زمنية دقيقة ونسلم المشاريع في الموعد المتفق عليه دون أي تأخير.</p></div>
+            </div>
+          </div>
+          <div class="col-md-6 fade-in-up delay-3">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-tags"></i></div>
+              <div class="why-text"><h4>أسعار تنافسية</h4><p>نقدم لك أفضل قيمة مقابل المال. أسعارنا شفافة ومناسبة مع الحفاظ على أعلى مستويات الجودة.</p></div>
+            </div>
+          </div>
+          <div class="col-md-6 fade-in-up delay-4">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-headset"></i></div>
+              <div class="why-text"><h4>دعم ما بعد البيع</h4><p>علاقتنا بك لا تنتهي عند التسليم. نوفر خدمات صيانة دورية واستشارات مستمرة لضمان راحة بالك.</p></div>
+            </div>
+          </div>
+          <div class="col-md-6 fade-in-up delay-1">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-drafting-compass"></i></div>
+              <div class="why-text"><h4>تصاميم مخصصة</h4><p>لا نؤمن بالحلول الجاهزة. كل مشروع لدينا يبدأ بدراسة احتياجاتك الخاصة وتقديم تصميم فريد لك.</p></div>
+            </div>
+          </div>
+          <div class="col-md-6 fade-in-up delay-2">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-certificate"></i></div>
+              <div class="why-text"><h4>مرخّص رسمياً</h4><p>مؤسستنا مسجلة رسمياً وتلتزم بكافة المعايير الحكومية، مما يضمن لك حقوقك التجارية والقانونية.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section id="process" class="section-wrap section-bg-white">
+  <div class="container">
+    <div class="section-header fade-in-up">
+      <div class="section-tag">آلية العمل</div>
+      <h2 class="section-title">كيف <span>نعمل</span>؟</h2>
+      <p class="section-desc">من لحظة تواصلك معنا وحتى تسلمك المشروع النهائي، نسير بخطوات منهجية وواضحة لضمان رضاك.</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="row g-4 process-steps">
+      <div class="process-line d-none d-lg-block"></div>
+      <div class="col-6 col-lg-3 fade-in-up delay-1">
+        <div class="process-step">
+          <div class="step-num">١</div>
+          <div class="step-title">الاستشارة</div>
+          <div class="step-desc">نستمع لرؤيتك ومتطلباتك، ونقدم لك النصح الفني الهندي لاختيار أفضل الحلول.</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3 fade-in-up delay-2">
+        <div class="process-step">
+          <div class="step-num">٢</div>
+          <div class="step-title">المعاينة والتصميم</div>
+          <div class="step-desc">فريقنا يزور الموقع لقياس المساحات بدقة، ويقوم بإعداد التصميمات والمخططات التنفيذية.</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3 fade-in-up delay-3">
+        <div class="process-step">
+          <div class="step-num">٣</div>
+          <div class="step-title">التنفيذ الدقيق</div>
+          <div class="step-desc">نبدأ العمل باستخدام أحدث المعدات وخامات ممتازة، مع متابعة مستمرة لجودة العمل.</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3 fade-in-up delay-4">
+        <div class="process-step">
+          <div class="step-num">٤</div>
+          <div class="step-title">التسليم النهائي</div>
+          <div class="step-desc">نسلم المشروع نظيفًا وجاهزًا للاستخدام، ونضمن رضاك التام قبل المغادرة.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="testimonials" class="section-wrap section-bg-gray">
+  <div class="container">
+    <div class="section-header fade-in-up">
+      <div class="section-tag">آراء العملاء</div>
+      <h2 class="section-title">قالوا <span>عنّا</span></h2>
+      <p class="section-desc">رضا عملائنا هو خير دليل على جودة ما نقدمه. إليك بعض تجاربهم معنا.</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 fade-in-up delay-1">
+        <div class="testimonial-card">
+          <div class="quote-icon">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">تجربتي مع مؤسسة حسين راشد كانت استثنائية بكل معنى الكلمة. تفاصيل العمل، الالتزام بالمواعيد، والجودة النهائية للمظلة فاقت توقعاتي بمراحل. أنصح أي شخص يبحث عن الجودة بالتعامل معهم.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">م</div>
+            <div><div class="author-name">محمد العسيري</div><div class="author-role">نجران</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in-up delay-2">
+        <div class="testimonial-card">
+          <div class="quote-icon">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">صمموا لنا بيت شعر في استراحتنا بطراز تراثي راقي. الخامات المستخدمة ممتازة والخياطة دقيقة جدًا. أصبحت الاستراحة مكاننا المفضل للجلوس بفضل لمساتهم الفنية.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">س</div>
+            <div><div class="author-name">سعد القحطاني</div><div class="author-role">نجران</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in-up delay-3">
+        <div class="testimonial-card">
+          <div class="quote-icon">"</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">احترافية عالية في التعامل والتنفيذ. قاموا بتجهيز مظلات السيارات والممشى في منزلي بسرعة وإتقان. السعر كان مناسبًا جدًا مقارنة بالخدمة المقدمة. شكراً لكم.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">خ</div>
+            <div><div class="author-name">خالد الشهري</div><div class="author-role">نجران</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROMO BANNER ===== -->
+<section id="promo">
+  <div class="promo-content">
+    <div class="promo-title">🎯 هل أنت جاهز لتحويل مكانك؟</div>
+    <div class="promo-desc">لا تتردد، فريقنا جاهز للإجابة على جميع استفساراتك وتقديم عرض سعر مخصص يلبي طموحاتك.</div>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="tel:+966550888608" class="btn-light"><i class="fas fa-phone-alt"></i> اتصل الآن: 0550888608</a>
+      <a href="https://wa.me/966550888608" target="_blank" class="btn-light" style="background:#25d366;color:#fff;border:none"><i class="fab fa-whatsapp"></i> واتساب</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CERTIFICATES ===== -->
+<section id="certificates" class="section-wrap section-bg-white">
+  <div class="container">
+    <div class="section-header fade-in-up">
+      <div class="section-tag">الوثائق الرسمية</div>
+      <h2 class="section-title">مرخّصون و<span>موثوقون</span></h2>
+      <p class="section-desc">نفتخر بامتلاكنا كافة التراخيص والوثائق الرسمية التي تضمن لكم حقوقكم وتؤكد على التزامنا بالمعايير المهنية.</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 fade-in-up delay-1">
+        <div class="cert-card">
+          <span class="cert-icon">🏛️</span>
+          <div class="cert-title">السجل التجاري</div>
+          <p class="cert-desc">مسجلون في وزارة التجارة السعودية بموجب سجل تجاري ساري المفعول يخضع لكافة الأنظمة.</p>
+          <div class="cert-num">7026831599</div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in-up delay-2">
+        <div class="cert-card">
+          <span class="cert-icon">💼</span>
+          <div class="cert-title">شهادة الضريبة (VAT)</div>
+          <p class="cert-desc">مسجلون رسمياً في ضريبة القيمة المضافة لدى هيئة الزكاة والضريبة والجمارك لإصدار الفواتير.</p>
+          <div class="cert-num">310809909600003</div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in-up delay-3">
+        <div class="cert-card">
+          <span class="cert-icon">📍</span>
+          <div class="cert-title">العنوان الوطني</div>
+          <p class="cert-desc">عنواننا الوطني الرسمي المسجل في منصة أبشر والمنصات الحكومية في المملكة العربية السعودية.</p>
+          <div class="cert-num">NAJB3065</div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5 g-4 align-items-center justify-content-center">
+      <div class="col-md-6 fade-in-left">
+        <div style="background:var(--bg-body);border:1px solid var(--border);border-radius:20px;padding:30px">
+          <div style="color:var(--text-main);font-size:0.9rem;font-weight:800;margin-bottom:20px"><i class="fas fa-info-circle me-2"></i>معلومات المؤسسة</div>
+          <div style="display:grid;gap:15px">
+            <div style="display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--border)">
+              <span style="color:var(--text-muted);font-size:0.9rem">اسم المؤسسة</span>
+              <span style="color:var(--text-main);font-size:0.9rem;font-weight:700">مؤسسة محل حسين راشد بن حسين المحامض التجارية</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--border)">
+              <span style="color:var(--text-muted);font-size:0.9rem">نوع الكيان</span>
+              <span style="color:var(--text-main);font-size:0.9rem;font-weight:700">مؤسسة فردية</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--border)">
+              <span style="color:var(--text-muted);font-size:0.9rem">حالة السجل</span>
+              <span style="color:#10b981;font-size:0.9rem;font-weight:800">نشط ✓</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--border)">
+              <span style="color:var(--text-muted);font-size:0.9rem">تاريخ التسجيل الضريبي</span>
+              <span style="color:var(--text-main);font-size:0.9rem;font-weight:700">2022/02/01</span>
+            </div>
+            <div style="display:flex;justify-content:space-between">
+              <span style="color:var(--text-muted);font-size:0.9rem">المدينة</span>
+              <span style="color:var(--text-main);font-size:0.9rem;font-weight:700">نجران، المملكة العربية السعودية</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAP ===== -->
+<section id="map-section" class="section-wrap section-bg-gray">
+  <div class="container">
+    <div class="section-header fade-in-up">
+      <div class="section-tag">موقعنا</div>
+      <h2 class="section-title">زورونا <span>موقعياً</span></h2>
+      <p class="section-desc">نسعد بزيارتكم دائماً في مقرنا الرئيسي لمناقشة مشاريعكم ومتطلباتكم وجهًا لوجه.</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-8 fade-in-left">
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3626.4369652282035!2d46.718103500000005!3d24.643083299999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f05cb4bb84503%3A0xa6137cb49770e1a4!2z2YXYpNiz2LPYqSDZhdit2YXYryDYsdin2LTYryDYqNmGINit2LPZitmGINin2YTZhdit2KfZhdi2INmE2YTYrdmK2KfZhQ!5e0!3m2!1sar!2seg!4v1780931201278!5m2!1sar!2seg" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+      <div class="col-lg-4 fade-in-right">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:30px;height:100%">
+          <div style="color:var(--text-main);font-size:1.1rem;font-weight:800;margin-bottom:25px"><i class="fas fa-map-marker-alt me-2"></i>تفاصيل العنوان</div>
+          <div style="display:grid;gap:20px">
+            <div style="display:flex;gap:15px;align-items:flex-start">
+              <i class="fas fa-city" style="color:var(--text-muted);margin-top:4px;width:20px"></i>
+              <div><div style="color:var(--text-muted);font-size:0.85rem;font-weight:700">المدينة</div><div style="color:var(--text-main);font-size:1rem;font-weight:600">نجران</div></div>
+            </div>
+            <div style="display:flex;gap:15px;align-items:flex-start">
+              <i class="fas fa-map" style="color:var(--text-muted);margin-top:4px;width:20px"></i>
+              <div><div style="color:var(--text-muted);font-size:0.85rem;font-weight:700">الحي</div><div style="color:var(--text-main);font-size:1rem;font-weight:600">حي الروضة</div></div>
+            </div>
+            <div style="display:flex;gap:15px;align-items:flex-start">
+              <i class="fas fa-road" style="color:var(--text-muted);margin-top:4px;width:20px"></i>
+              <div><div style="color:var(--text-muted);font-size:0.85rem;font-weight:700">الشارع</div><div style="color:var(--text-main);font-size:1rem;font-weight:600">طريق الملك عبدالعزيز</div></div>
+            </div>
+            <div style="display:flex;gap:15px;align-items:flex-start">
+              <i class="fas fa-building" style="color:var(--text-muted);margin-top:4px;width:20px"></i>
+              <div><div style="color:var(--text-muted);font-size:0.85rem;font-weight:700">رقم المبنى</div><div style="color:var(--text-main);font-size:1rem;font-weight:600">3065</div></div>
+            </div>
+            <div style="display:flex;gap:15px;align-items:flex-start">
+              <i class="fas fa-envelope" style="color:var(--text-muted);margin-top:4px;width:20px"></i>
+              <div><div style="color:var(--text-muted);font-size:0.85rem;font-weight:700">الرمز البريدي</div><div style="color:var(--text-main);font-size:1rem;font-weight:600">66441</div></div>
+            </div>
+            <div style="display:flex;gap:15px;align-items:flex-start">
+              <i class="fas fa-hashtag" style="color:var(--text-muted);margin-top:4px;width:20px"></i>
+              <div><div style="color:var(--text-muted);font-size:0.85rem;font-weight:700">العنوان المختصر</div><div style="color:var(--text-main);font-size:1rem;font-weight:600;font-family:'Cairo',sans-serif">NAJB3065</div></div>
+            </div>
+          </div>
+          <a href="https://maps.app.goo.gl/8Y3X" target="_blank" class="btn-primary-custom mt-4 d-block text-center" style="width:100%;justify-content:center">
+            <i class="fas fa-directions"></i> الحصول على الاتجاهات
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="section-wrap section-bg-white">
+  <div class="container">
+    <div class="section-header fade-in-up">
+      <div class="section-tag">تواصل معنا</div>
+      <h2 class="section-title">ابدأ <span>مشروعك</span> اليوم</h2>
+      <p class="section-desc">فريق خدمة العملاء لدينا جاهز للرد على استفساراتك وتقديم المساعدة الفنية في أي وقت.</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="row g-5">
+      <div class="col-lg-5 fade-in-right">
+        <div class="contact-info-card">
+          <h3 style="color:var(--text-main);font-size:1.2rem;font-weight:800;margin-bottom:30px"><i class="fas fa-info-circle me-2"></i>بيانات التواصل</h3>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+            <div>
+              <div class="contact-label">الهاتف الأول</div>
+              <a href="tel:+966550888608" class="contact-value">0550888608</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-mobile-alt"></i></div>
+            <div>
+              <div class="contact-label">الهاتف الثاني</div>
+              <a href="tel:+966532771832" class="contact-value">0532771832</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <div class="contact-label">واتساب</div>
+              <a href="https://wa.me/966550888608" target="_blank" class="contact-value">0550888608</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fab fa-facebook-f"></i></div>
+            <div>
+              <div class="contact-label">فيسبوك</div>
+              <a href="https://www.facebook.com/profile.php?id=100090592885243&locale=ar_AR" target="_blank" class="contact-value">صفحتنا الرسمية</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <div class="contact-label">العنوان</div>
+              <span class="contact-value" style="font-size:0.9rem">نجران - حي الروضة - طريق الملك عبدالعزيز</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 fade-in-left">
+        <div class="contact-form-wrap">
+          <h3 style="color:var(--text-main);font-size:1.2rem;font-weight:800;margin-bottom:30px"><i class="fas fa-paper-plane me-2"></i>أرسل لنا رسالة</h3>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label-custom">الاسم الكريم</label>
+                <input type="text" class="form-control-custom" placeholder="أدخل اسمك الكريم">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label-custom">رقم الجوال</label>
+                <input type="tel" class="form-control-custom" placeholder="05xxxxxxxx" dir="ltr" style="text-align:right">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label-custom">نوع الخدمة المطلوبة</label>
+                <select class="form-control-custom">
+                  <option value="" disabled selected>اختر الخدمة المطلوبة</option>
+                  <option>خيام</option>
+                  <option>بيوت شعر</option>
+                  <option>مظلات</option>
+                  <option>مضلات</option>
+                  <option>سواتر</option>
+                  <option>جلسات</option>
+                  <option>برجولات</option>
+                  <option>ساندوتش بانل</option>
+                  <option>ملاحق</option>
+                  <option>مشبات</option>
+                  <option>صبات</option>
+                  <option>ترميم</option>
+                  <option>تجهيز مخيمات</option>
+                  <option>تجهيز استراحات</option>
+                  <option>مقاولات عامة</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label-custom">تفاصيل الطلب</label>
+                <textarea class="form-control-custom" placeholder="اكتب هنا تفاصيل مشروعك أو ما تحتاجه..."></textarea>
+              </div>
+            </div>
+            <div class="col-12">
+              <button class="btn-primary-custom" style="width:100%;justify-content:center" onclick="sendWhatsApp()">
+                <i class="fab fa-whatsapp"></i> إرسال عبر واتساب
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 fade-in-up delay-1">
+        <div class="footer-brand">
+          <div class="navbar-brand-custom" style="margin-bottom:20px">
+            <div class="brand-icon"><i class="fas fa-campground"></i></div>
+            <div class="brand-text">
+              <span class="brand-main">حسين راشد المحامض</span>
+              <span class="brand-sub">    • نجران</span>
+            </div>
+          </div>
+        </div>
+        <p class="footer-desc">مؤسسة رائدة في مجال الخياطة والمقاولات في منطقة نجران والمنطقة الجنوبية. نسعى دائماً لتقديم حلول إبداعية وعملية ترقي بجودة حياة عملائنا وتلبي كافة احتياجاتهم.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/profile.php?id=100090592885243&locale=ar_AR" target="_blank" class="social-btn" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://wa.me/966550888608" target="_blank" class="social-btn" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+          <a href="tel:+966550888608" class="social-btn" title="اتصل بنا"><i class="fas fa-phone-alt"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2 fade-in-up delay-2">
+        <div class="footer-heading">روابط سريعة</div>
+        <a href="#hero" class="footer-link"><i class="fas fa-chevron-left"></i> الرئيسية</a>
+        <a href="#services" class="footer-link"><i class="fas fa-chevron-left"></i> خدماتنا</a>
+        <a href="#gallery" class="footer-link"><i class="fas fa-chevron-left"></i> أعمالنا</a>
+        <a href="#why-us" class="footer-link"><i class="fas fa-chevron-left"></i> لماذا نحن</a>
+        <a href="#process" class="footer-link"><i class="fas fa-chevron-left"></i> كيف نعمل</a>
+        <a href="#contact" class="footer-link"><i class="fas fa-chevron-left"></i> تواصل</a>
+      </div>
+      <div class="col-6 col-lg-3 fade-in-up delay-3">
+        <div class="footer-heading">خدماتنا</div>
+        <a href="#services" class="footer-link"><i class="fas fa-chevron-left"></i> خيام</a>
+        <a href="#services" class="footer-link"><i class="fas fa-chevron-left"></i> بيوت شعر</a>
+        <a href="#services" class="footer-link"><i class="fas fa-chevron-left"></i> مظلات ومضلات</a>
+        <a href="#services" class="footer-link"><i class="fas fa-chevron-left"></i> سواتر وجلسات</a>
+        <a href="#services" class="footer-link"><i class="fas fa-chevron-left"></i> ساندوتش بانل</a>
+        <a href="#services" class="footer-link"><i class="fas fa-chevron-left"></i> مقاولات عامة</a>
+      </div>
+      <div class="col-lg-3 fade-in-up delay-4">
+        <div class="footer-heading">تواصل معنا</div>
+        <div style="display:grid;gap:15px">
+          <a href="tel:+966550888608" style="display:flex;gap:12px;align-items:center;text-decoration:none">
+            <i class="fas fa-phone-alt" style="color:#d1d5db;width:18px"></i>
+            <span style="color:#9ca3af;font-size:0.95rem;font-family:'Cairo',sans-serif">0550888608</span>
+          </a>
+          <a href="tel:+966532771832" style="display:flex;gap:12px;align-items:center;text-decoration:none">
+            <i class="fas fa-mobile-alt" style="color:#d1d5db;width:18px"></i>
+            <span style="color:#9ca3af;font-size:0.95rem;font-family:'Cairo',sans-serif">0532771832</span>
+          </a>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <i class="fas fa-map-marker-alt" style="color:#d1d5db;width:18px;margin-top:3px"></i>
+            <span style="color:#9ca3af;font-size:0.9rem">نجران - حي الروضة<br>طريق الملك عبدالعزيز</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">جميع الحقوق محفوظة &copy; <span>2026</span> - مؤسسة حسين راشد المحامض    </div>
+      <a href="https://www.facebook.com/profile.php?id=100090592885243&locale=ar_AR" target="_blank" class="footer-gmtweb">تم التصميم بواسطة <strong>GMTWEB</strong></a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ===== LOADER =====
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 2000);
+});
+
+// ===== NAVBAR =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 20) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+  document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+});
+
+function toggleNav() {
+  const menu = document.getElementById('mobileMenu');
+  if (menu.style.maxHeight === '0px' || !menu.style.maxHeight) {
+    menu.style.maxHeight = '400px';
+  } else {
+    menu.style.maxHeight = '0px';
+  }
+}
+function closeNav() {
+  document.getElementById('mobileMenu').style.maxHeight = '0px';
+}
+
+// ===== SCROLL ANIMATIONS =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right').forEach(el => observer.observe(el));
+
+// ===== COUNTERS =====
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.target);
+    let current = 0;
+    const step = Math.ceil(target / 60);
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current + (el.parentElement.querySelector('.counter-label')?.textContent.includes('%') ? '' : '+');
+      if (current >= target) clearInterval(timer);
+    }, 30);
+    counterObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.counter-num').forEach(el => counterObserver.observe(el));
+
+// ===== GALLERY FILTER =====
+function filterGallery(cat, btn) {
+  document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    if (cat === 'all' || item.dataset.cat === cat) {
+      item.style.display = 'block';
+      item.style.animation = 'none';
+      item.offsetHeight; /* trigger reflow */
+      item.style.animation = 'fadeIn 0.5s ease';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+// ===== LIGHTBOX =====
+let lightboxImages = [];
+let lightboxIndex = 0;
+
+function buildLightboxImages() {
+  lightboxImages = Array.from(document.querySelectorAll('.gallery-item img')).map(img => img.src);
+}
+
+function openLightbox(src, idx) {
+  buildLightboxImages();
+  lightboxIndex = idx;
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function lightboxPrev() {
+  lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+  document.getElementById('lightbox-img').src = lightboxImages[lightboxIndex];
+}
+
+function lightboxNext() {
+  lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+  document.getElementById('lightbox-img').src = lightboxImages[lightboxIndex];
+}
+
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+
+document.addEventListener('keydown', e => {
+  if (document.getElementById('lightbox').classList.contains('active')) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxNext();
+    if (e.key === 'ArrowRight') lightboxPrev();
+  }
+});
+
+// ===== WHATSAPP FORM =====
+function sendWhatsApp() {
+  const name = document.querySelectorAll('.form-control-custom')[0]?.value || '';
+  const phone = document.querySelectorAll('.form-control-custom')[1]?.value || '';
+  const service = document.querySelectorAll('.form-control-custom')[2]?.value || '';
+  const msg = document.querySelectorAll('.form-control-custom')[3]?.value || '';
+  const text = `مرحباً، أنا ${name || 'عميل'}\nرقم التواصل: ${phone || 'غير محدد'}\nالخدمة المطلوبة: ${service || 'غير محدد'}\nالتفاصيل: ${msg || 'لا توجد تفاصيل إضافية'}`;
+  window.open(`https://wa.me/966550888608?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+// ===== HERO COUNTER ANIMATION =====
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.counter-anim').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      let c = 0;
+      const step = Math.max(1, Math.ceil(target / 80));
+      const t = setInterval(() => {
+        c = Math.min(c + step, target);
+        el.textContent = c + '+';
+        if (c >= target) { el.textContent = target + '+'; clearInterval(t); }
+      }, 20);
+    });
+  }, 2200);
+});
+
+// ===== ACTIVE NAV LINKS =====
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link-custom[href^="#"]');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+  });
+});
+</script> 
+</body>
+</html>
